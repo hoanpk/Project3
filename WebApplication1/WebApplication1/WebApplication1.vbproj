@@ -120,12 +120,29 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin.aspx" />
+    <Content Include="home.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="sua diem.aspx" />
+    <Content Include="suadiem.aspx" />
     <Content Include="Web.config" />
     <Content Include="xemdiem.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin.aspx.designer.vb">
+      <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin.aspx.vb">
+      <DependentUpon>admin.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="connect.vb" />
+    <Compile Include="home.aspx.designer.vb">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="home.aspx.vb">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ketnoi.vb" />
     <Compile Include="login.aspx.designer.vb">
       <DependentUpon>login.aspx</DependentUpon>
@@ -160,11 +177,11 @@
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="sua diem.aspx.designer.vb">
-      <DependentUpon>sua diem.aspx</DependentUpon>
+    <Compile Include="suadiem.aspx.designer.vb">
+      <DependentUpon>suadiem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="sua diem.aspx.vb">
-      <DependentUpon>sua diem.aspx</DependentUpon>
+    <Compile Include="suadiem.aspx.vb">
+      <DependentUpon>suadiem.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="xemdiem.aspx.designer.vb">
