@@ -10,6 +10,14 @@
     <form id="form1" runat="server">
     <div>
     
+        <asp:GridView ID="GridView1" runat="server">
+            <Columns>
+                <asp:ButtonField CommandName="Edit" HeaderText="Edit" ShowHeader="True" Text="edit" />
+                <asp:ButtonField CommandName="Update" HeaderText="Add" ShowHeader="True" Text="add" />
+                <asp:ButtonField CommandName="Delete" HeaderText="Delete" ShowHeader="True" Text="delete" />
+            </Columns>
+        </asp:GridView>
+    
         <asp:Button ID="Button1" runat="server" Text="Exit" />
     
     </div>

@@ -1,10 +1,23 @@
 ﻿Public Class xemdiem
     Inherits System.Web.UI.Page
-
+    Dim ReConnect = New connect
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim userName As String = Session("UserName").ToString
+        Dim passWord As String = Session("PassWord").ToString
+        GridView1.DataSource = ReConnect.ShowScore(userName, passWord)
+        GridView1.DataBind()
+        Dim CaseAuthor As String = ReConnect.CheckAuthor(userName.ToLower, passWord.ToLower)
+        Dim nameAuthor As String = ReConnect.CheckAuthorName(userName.ToLower, passWord.ToLower)
+        Select Case CaseAuthor
+            Case "1"
+                Button2.Enabled = True
+            Case Else
+                Button2.Enabled = False
+        End Select
 
     End Sub
-    Dim ReConnect = New connect
+
+
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Response.Redirect("home.aspx")
@@ -31,5 +44,9 @@
             Case Else
                 ' Response.Redirect("home.aspx")
         End Select
+    End Sub
+
+    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+
     End Sub
 End Class
