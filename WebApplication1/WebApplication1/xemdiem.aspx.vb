@@ -1,4 +1,5 @@
-﻿Public Class xemdiem
+﻿Imports System.Data
+Public Class xemdiem
     Inherits System.Web.UI.Page
     Dim ReConnect = New connect
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -14,6 +15,8 @@
             Case Else
                 Button2.Enabled = False
         End Select
+        'Dim dt = Me.GridView1.DataSource
+        'dt.Rows.RemoveAt(12)
 
     End Sub
 
@@ -46,7 +49,21 @@
         End Select
     End Sub
 
-    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
 
+    Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+    End Sub
+
+    Protected Sub GridView1_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles GridView1.RowDeleting
+        Dim dt As DataTable = GridView1.DataSource
+
+        'GridView1.DeleteRow(e.RowIndex)
+        Dim TemVar = e.RowIndex
+        Dim SelectedRow = dt.Rows.Item(e.RowIndex)
+        Dim a = SelectedRow.Item(1)
+        Dim b = SelectedRow.Item(0)
+        ReConnect.DeleteData(a, b)
+        dt.Rows.RemoveAt(e.RowIndex)
+        GridView1.DataBind()
     End Sub
 End Class

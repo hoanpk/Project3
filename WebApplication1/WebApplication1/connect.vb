@@ -40,6 +40,7 @@ Public Class connect
 
 
     End Function
+
     Public Function CheckAuthorName(user As String, pass As String) As String
         Dim AuThorName As String = String.Format("select role_name from dbo.account inner join dbo.role on QLSV.dbo.account.role_id=QLSV.dbo.role.role_id where user_name = '{0}' and user_password = '{1}'", user, pass)
         'select name from QLSV.dbo.role inner join QLSV.dbo.account on QLSV.dbo.account.role_id=QLSV.dbo.role.ID
@@ -47,19 +48,36 @@ Public Class connect
         Dim result As String = dTable.Rows.Item(0).Item("role_name")
         Return result
     End Function
+
     Public Function ShowScore(user As String, pass As String) As DataTable
         Dim Author As String = CheckAuthor(user, pass)
         Dim dTable As DataTable
         Select Case Author
             Case "1"
-                Dim GetScore As String = String.Format("select account.user_id,account.user_name,subject_name,user_score from dbo.account inner join dbo.user_subject_score on account.user_id = user_subject_score.user_id inner join dbo.subjects on subjects.subject_id = user_subject_score.subject_id")
+                Dim GetScore As String = String.Format("select subjects.subject_id, account.user_id,account.user_name,subject_name,user_score from dbo.account inner join dbo.user_subject_score on account.user_id = user_subject_score.user_id inner join dbo.subjects on subjects.subject_id = user_subject_score.subject_id")
                 dTable = getDataTable(GetScore)
                 Return dTable
             Case "2"
-                Dim GetScore As String = String.Format("select account.user_id,account.user_name,subject_name,user_score from dbo.account inner join dbo.user_subject_score on account.user_id = user_subject_score.user_id inner join dbo.subjects on subjects.subject_id = user_subject_score.subject_id where user_name = '{0}' and user_password = '{1}'", user, pass)
+                Dim GetScore As String = String.Format("select subjects.subject_id, account.user_id,account.user_name,subject_name,user_score from dbo.account inner join dbo.user_subject_score on account.user_id = user_subject_score.user_id inner join dbo.subjects on subjects.subject_id = user_subject_score.subject_id where user_name = '{0}' and user_password = '{1}'", user, pass)
                 dTable = getDataTable(GetScore)
                 Return dTable
         End Select
         Return dTable
+    End Function
+
+    Public Function DeleteData(user_id As String, subject_id As String)
+        Dim sqlQuery As String = String.Format("delete from dbo.user_subject_score where user_id ='{0}' and subject_id ='{1}'", user_id, subject_id)
+        conn = New SqlConnection(_Connectionstring)
+
+        Dim command As New SqlCommand(sqlQuery, conn)
+        Try
+            conn.Open()
+            command.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox("error")
+        Finally
+            conn.Close()
+        End Try
     End Function
 End Class

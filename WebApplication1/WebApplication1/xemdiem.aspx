@@ -12,9 +12,7 @@
     
         <asp:GridView ID="GridView1" runat="server">
             <Columns>
-                <asp:ButtonField CommandName="Edit" HeaderText="Edit" ShowHeader="True" Text="edit" />
-                <asp:ButtonField CommandName="Update" HeaderText="Add" ShowHeader="True" Text="add" />
-                <asp:ButtonField CommandName="Delete" HeaderText="Delete" ShowHeader="True" Text="delete" />
+                <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Delete" ShowHeader="True" Text="delete" />
             </Columns>
         </asp:GridView>
     
@@ -24,6 +22,7 @@
         <p>
             <asp:Button ID="Button2" runat="server" Text="Edit" />
         </p>
+        <asp:Button ID="Button3" runat="server" Text="Add new" />
     </form>
 </body>
 </html>
